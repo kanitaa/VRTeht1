@@ -21,35 +21,21 @@ public class Telekinesis : MonoBehaviour
 
     [SerializeField]
     bool rightHand;
-
-    XRRayInteractor xr;
-
-    private void Start()
-    {
-        xr = GetComponent<XRRayInteractor>();
-    }
+ 
     public void OnHoverEntered(HoverEnterEventArgs args)
     {
         if (args.interactableObject.transform.gameObject.CompareTag("TelekinesisObject"))
         {
             overTelekinesisObject = true;
             selectAction.action.Disable();
-            xr.useForceGrab = false;
-       
         }
-        else
-        {
-            xr.maxRaycastDistance = 1;
-        }
-       
-        Debug.Log($"{args.interactorObject} hovered over {args.interactableObject}", this);
+      Debug.Log($"{args.interactorObject} hovered over {args.interactableObject}", this);
+     
     }
     public void OnHoverExited(HoverExitEventArgs args)
     {
         overTelekinesisObject = false;
-        xr.useForceGrab = true;
         selectAction.action.Enable();
-        xr.maxRaycastDistance = 30;
         Debug.Log($"{args.interactorObject} stopped hovering over {args.interactableObject}", this);
    }
   
